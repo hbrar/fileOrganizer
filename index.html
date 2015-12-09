@@ -69,14 +69,15 @@ listOfFiles.forEach(function(element, index, array){
     case 'php':
     case 'xhtml':
     var dest = path.join(source,'d','doc',element);
-    fse.ensureDirSync(dest, function (err) {
+    fse.ensureDirSync(path.join(source,'d','doc'), function (err) {
       if (err) console.log(err) // => null
   // dir has now been created, including the directory it is to be placed in
-      fse.move(origin, dest, function (err) {
-      if (err)  alert(err)
-      alert('moving '+element+":success!");
-    });
+
   });
+  fse.move(origin, dest, function (err) {
+  if (err)  alert(err)
+  alert('moving '+element+":success!");
+});
       break;
 
       case 'png':
@@ -88,15 +89,16 @@ listOfFiles.forEach(function(element, index, array){
       case 'tif':
       case 'svg':
       var dest = path.join(source,'d','images',element);
-      fse.ensureDirSync(dest, function (err) {
+      fse.ensureDirSync(path.join(source,'d','images'), function (err) {
         if (err) console.log(err) // => null
     // dir has now been created, including the directory it is to be placed in
 
-      fse.move(origin, dest, function (err) {
-        if (err) alert(err)
-        alert('moving '+element+":success!");
-      });
     });
+    fse.move(origin, dest, function (err) {
+      if (err) alert(err)
+      alert('moving '+element+":success!");
+    });
+
         break;
 
         case 'aif':
@@ -111,15 +113,16 @@ listOfFiles.forEach(function(element, index, array){
         case 'wav':
         case 'wma':
         var dest = path.join(source,'d','audio',element);
-        fse.ensureDirSync(dest, function (err) {
+        fse.ensureDirSync(path.join(source,'d','audio'), function (err) {
           if (err) console.log(err) // => null
       // dir has now been created, including the directory it is to be placed in
+                });
+                fse.move(origin, dest, function (err) {
+                  if (err) alert(err)
+                  alert('moving '+element+":success!");
+                });
+        
 
-        fse.move(origin, dest, function (err) {
-          if (err) alert(err)
-          alert('moving '+element+":success!");
-        });
-      });
           break;
 
 
