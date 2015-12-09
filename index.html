@@ -8,7 +8,7 @@
 <body>
 <h1>Hello world!</h1>
 <button id='button'>click</button>
-<input type="file" nwdirectory id='browser'/>
+<input type="file" nwdirectory id='fileBrowser'/>
 <input type="textbox" id='path'/>
 <script>
 //npm install --save fs-extra
@@ -16,7 +16,7 @@ var fse = require('fs-extra');
 var path = require('path');
 
 $('#button').click(function(){
-  var loc = $('#browser').val();
+  var loc = $('#fileBrowser').val();
   $('#path').val(loc);
 var source = loc;
 
@@ -33,25 +33,96 @@ listOfFiles = listOfFiles.filter(function(element,index,array){
 listOfFiles.forEach(function(element, index, array){
 
   var ext = element.split(".")[1].toLowerCase();
+  var origin = path.join(source,element);
 
   switch (ext) {
     case 'txt':
     case 'pdf':
     case 'doc':
-    fse.move(path.join(source,element), path.join(source,'d','doc',element), function (err) {
+    case 'oxps':
+    case 'pub':
+    case 'docx':
+    case 'pages':
+    case 'pptx':
+    case 'ppt':
+    case 'indd':
+    case 'epub':
+    case 'pez':
+    case 'snb':
+    case 'mso':
+    case 'lic':
+    case 'edoc':
+    case 'p65':
+    case 'btw':
+    case 'iwa':
+    case 'spd':
+    case 'rtf':
+    case 'log':
+    case 'csv':
+    case 'pps':
+    case 'dat':
+    case 'xml':
+    case 'html':
+    case 'htm':
+    case 'css':
+    case 'js':
+    case 'php':
+    case 'xhtml':
+    var dest = path.join(source,'d','doc',element);
+    fs.ensureDirSync(dest, function (err) {
+      if (err) console.log(err) // => null
+  // dir has now been created, including the directory it is to be placed in
+      fse.move(origin, dest, function (err) {
       if (err)  alert(err)
       alert('moving '+element+":success!");
     });
-
+  });
       break;
+
       case 'png':
       case 'jpg':
-      fse.move(path.join(source,element), path.join(source,'d','images',element), function (err) {
+      case 'bmp':
+      case 'gif':
+      case 'psd':
+      case 'thm':
+      case 'tif':
+      case 'svg':
+      var dest = path.join(source,'d','images',element);
+      fs.ensureDirSync(dest, function (err) {
+        if (err) console.log(err) // => null
+    // dir has now been created, including the directory it is to be placed in
+
+      fse.move(origin, dest, function (err) {
         if (err) alert(err)
         alert('moving '+element+":success!");
       });
-
+    });
         break;
+
+        case 'aif':
+        case 'iff':
+        case 'm3u':
+        case 'm4a':
+        case 'mid':
+        case 'mid':
+        case 'mp3':
+        case 'mpa':
+        case 'ra':
+        case 'wav':
+        case 'wma':
+        var dest = path.join(source,'d','audio',element);
+        fs.ensureDirSync(dest, function (err) {
+          if (err) console.log(err) // => null
+      // dir has now been created, including the directory it is to be placed in
+
+        fse.move(origin, dest, function (err) {
+          if (err) alert(err)
+          alert('moving '+element+":success!");
+        });
+      });
+          break;
+
+
     default:
       alert('moving '+element+':unsuccesfull');
   }
