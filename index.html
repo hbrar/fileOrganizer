@@ -9,7 +9,7 @@
 <h1>Hello world!</h1>
 <button id='button'>click</button>
 <input type="file" nwdirectory id='fileBrowser'/>
-<input type="textbox" id='path'/>
+<input type="textbox" id='displaypath'/>
 <script>
 //npm install --save fs-extra
 var fse = require('fs-extra');
@@ -17,7 +17,7 @@ var path = require('path');
 
 $('#button').click(function(){
   var loc = $('#fileBrowser').val();
-  $('#path').val(loc);
+  $('#displaypath').val(loc);
 var source = loc;
 
 //the LOC below gets executed before the "list" gets copied to listOfFiles if you use asynch readdir
@@ -69,7 +69,7 @@ listOfFiles.forEach(function(element, index, array){
     case 'php':
     case 'xhtml':
     var dest = path.join(source,'d','doc',element);
-    fs.ensureDirSync(dest, function (err) {
+    fse.ensureDirSync(dest, function (err) {
       if (err) console.log(err) // => null
   // dir has now been created, including the directory it is to be placed in
       fse.move(origin, dest, function (err) {
@@ -88,7 +88,7 @@ listOfFiles.forEach(function(element, index, array){
       case 'tif':
       case 'svg':
       var dest = path.join(source,'d','images',element);
-      fs.ensureDirSync(dest, function (err) {
+      fse.ensureDirSync(dest, function (err) {
         if (err) console.log(err) // => null
     // dir has now been created, including the directory it is to be placed in
 
@@ -111,7 +111,7 @@ listOfFiles.forEach(function(element, index, array){
         case 'wav':
         case 'wma':
         var dest = path.join(source,'d','audio',element);
-        fs.ensureDirSync(dest, function (err) {
+        fse.ensureDirSync(dest, function (err) {
           if (err) console.log(err) // => null
       // dir has now been created, including the directory it is to be placed in
 
