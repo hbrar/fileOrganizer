@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <script src='vendor/jquery-1.11.3.min.js' type='text/javascript'></script>
+
+</head>
+<body>
+<h1>Hello world!</h1>
+<button id='button'>click</button>
+<input type="file" nwdirectory id='browser'/>
+<input type="textbox" id='path'/>
+<script>
+//npm install --save fs-extra
+var fse = require('fs-extra');
+var path = require('path');
+
+$('#button').click(function(){
+  var loc = $('#browser').val();
+  $('#path').val(loc);
+var source = loc;
+
+//the LOC below gets executed before the "list" gets copied to listOfFiles if you use asynch readdir
+var listOfFiles = fse.readdirSync(source);
+
+listOfFiles = listOfFiles.filter(function(element,index,array){
+  //filtering out folders i.e extentions as undefined
+  if(element.split('.')[1] !== undefined)
+  return true;
+});
+// listOfFiles.forEach(function(element, index, array){
+//   console.log(element.split(".")[1])});
+listOfFiles.forEach(function(element, index, array){
+
+  var ext = element.split(".")[1].toLowerCase();
+
+  switch (ext) {
+    case 'txt':
+    case 'pdf':
+    case 'doc':
+    fse.move(path.join(source,element), path.join(source,'d','doc',element), function (err) {
+      if (err)  alert(err)
+      alert('moving '+element+":success!");
+    });
+
+      break;
+      case 'png':
+      case 'jpg':
+      fse.move(path.join(source,element), path.join(source,'d','images',element), function (err) {
+        if (err) alert(err)
+        alert('moving '+element+":success!");
+      });
+
+        break;
+    default:
+      alert('moving '+element+':unsuccesfull');
+  }
+});
+
+
+})
+
+</script>
+</body>
+</html>

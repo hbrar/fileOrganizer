@@ -1,0 +1,19 @@
+{
+	"main":"index.html",
+	"name":"myApp",
+	"window":
+	{
+		"toolbar":false,
+		"width":1000,
+		"height":600,
+		"position":"center"
+	},
+	"maintainers":
+	[
+		{
+			"name":"harman",
+			"email":"hrmnbrar009@gmail.com",
+			"web":"/"
+		}
+	]
+}
