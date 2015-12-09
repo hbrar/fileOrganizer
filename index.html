@@ -25,14 +25,14 @@ var listOfFiles = fse.readdirSync(source);
 
 listOfFiles = listOfFiles.filter(function(element,index,array){
   //filtering out folders i.e extentions as undefined
-  if(element.split('.')[1] !== undefined)
+  if(element.split('.').pop() !== undefined)
   return true;
 });
 // listOfFiles.forEach(function(element, index, array){
 //   console.log(element.split(".")[1])});
 listOfFiles.forEach(function(element, index, array){
 
-  var ext = element.split(".")[1].toLowerCase();
+  var ext = element.split(".").pop().toLowerCase();
   var origin = path.join(source,element);
 
   switch (ext) {
@@ -116,12 +116,12 @@ listOfFiles.forEach(function(element, index, array){
         fse.ensureDirSync(path.join(source,'d','audio'), function (err) {
           if (err) console.log(err) // => null
       // dir has now been created, including the directory it is to be placed in
-                });
-                fse.move(origin, dest, function (err) {
-                  if (err) alert(err)
-                  alert('moving '+element+":success!");
-                });
-        
+
+            });
+            fse.move(origin, dest, function (err) {
+              if (err) alert(err)
+              alert('moving '+element+":success!");
+            });
 
           break;
 
