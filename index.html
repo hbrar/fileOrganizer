@@ -20,7 +20,7 @@ $('#button').click(function(){
   $('#path').val(loc);
 var source = loc;
 
-//the LOC below gets executed before the "list" gets copied to listOfFiles if you use asynch readdir
+//the line of code below gets executed before the "list" gets copied to listOfFiles if you use asynch readdir
 var listOfFiles = fse.readdirSync(source);
 
 listOfFiles = listOfFiles.filter(function(element,index,array){
@@ -36,43 +36,24 @@ listOfFiles.forEach(function(element, index, array){
   var origin = path.join(source,element);
 
   switch (ext) {
-    case 'txt':
-    case 'pdf':
-    case 'doc':
-    case 'oxps':
-    case 'pub':
-    case 'docx':
-    case 'pages':
-    case 'pptx':
-    case 'ppt':
-    case 'indd':
-    case 'epub':
-    case 'pez':
-    case 'snb':
-    case 'mso':
-    case 'lic':
-    case 'edoc':
-    case 'p65':
-    case 'btw':
-    case 'iwa':
-    case 'spd':
-    case 'rtf':
-    case 'log':
-    case 'csv':
-    case 'pps':
-    case 'dat':
-    case 'xml':
-    case 'html':
-    case 'htm':
-    case 'css':
-    case 'js':
-    case 'php':
-    case 'xhtml':
-    var dest = path.join(source,'d','doc',element);
-    fse.ensureDirSync(path.join(source,'d','doc'), function (err) {
-      if (err) console.log(err) // => null
-  // dir has now been created, including the directory it is to be placed in
 
+    //TEXT FILES
+    case 'doc':
+    case 'docx':
+    case 'log':
+    case 'msg':
+    case 'odt':
+    case 'pages':
+    case 'rtf':
+    case 'tex':
+    case 'txt':
+    case 'wpd':
+    case 'wps':
+
+    var dest = path.join(source,'Organized','Documents','Text Files',element);
+
+    fse.ensureDirSync(path.join(source,'Organized','Documents','Text Files'), function (err) {
+      if (err) console.log(err)
   });
   fse.move(origin, dest, function (err) {
   if (err)  alert(err)
@@ -80,6 +61,36 @@ listOfFiles.forEach(function(element, index, array){
 });
       break;
 
+      //DATA FILES
+      case 'csv':
+      case 'dat':
+      case 'gbr':
+      case 'ged':
+      case 'key':
+      case 'keychain':
+      case 'pps':
+      case 'ppt':
+      case 'pptx':
+      case 'sdf':
+      case 'tar':
+      case 'tax2012':
+      case 'tax2014':
+      case 'tax2015':
+      case 'vcf':
+      case 'xml':
+
+      var dest = path.join(source,'Organized','Documents','Data Files',element);
+
+      fse.ensureDirSync(path.join(source,'Organized','Documents','Data Files'), function (err) {
+        if (err) console.log(err)
+      });
+      fse.move(origin, dest, function (err) {
+      if (err)  alert(err)
+      alert('moving '+element+":success!");
+      });
+        break;
+
+      //IMAGES
       case 'png':
       case 'jpg':
       case 'bmp':
@@ -88,19 +99,45 @@ listOfFiles.forEach(function(element, index, array){
       case 'thm':
       case 'tif':
       case 'svg':
-      var dest = path.join(source,'d','images',element);
-      fse.ensureDirSync(path.join(source,'d','images'), function (err) {
-        if (err) console.log(err) // => null
-    // dir has now been created, including the directory it is to be placed in
+      case '3dm':
+      case '3ds':
+      case 'max':
+      case 'obj':
+      case 'dds':
+      case 'pspimage':
+      case 'tga':
+      case 'thm':
+      case 'yuv':
+      case 'ai':
+      case 'eps':
+      case 'ps':
 
+      var dest = path.join(source,'Organized','Images',element);
+
+      fse.ensureDirSync(path.join(source,'Organized','Images'), function (err) {
+        if (err) console.log(err)
     });
     fse.move(origin, dest, function (err) {
       if (err) alert(err)
       alert('moving '+element+":success!");
     });
-
         break;
 
+        //PDF
+        case 'pdf':
+
+        var dest = path.join(source,'Organized','Documents','PDF',element);
+
+        fse.ensureDirSync(path.join(source,'Organized','Documents','PDF'), function (err) {
+          if (err) console.log(err)
+        });
+        fse.move(origin, dest, function (err) {
+        if (err) alert(err)
+        alert('moving '+element+":success!");
+        });
+          break;
+
+        //AUDIO
         case 'aif':
         case 'iff':
         case 'm3u':
@@ -112,12 +149,12 @@ listOfFiles.forEach(function(element, index, array){
         case 'ra':
         case 'wav':
         case 'wma':
-        var dest = path.join(source,'d','audio',element);
-        fse.ensureDirSync(path.join(source,'d','audio'), function (err) {
-          if (err) console.log(err) // => null
-      // dir has now been created, including the directory it is to be placed in
 
-            });
+        var dest = path.join(source,'Organized','Audio',element);
+
+        fse.ensureDirSync(path.join(source,'Organized','Audio'), function (err) {
+          if (err) console.log(err)
+          });
             fse.move(origin, dest, function (err) {
               if (err) alert(err)
               alert('moving '+element+":success!");
@@ -125,7 +162,309 @@ listOfFiles.forEach(function(element, index, array){
 
           break;
 
+          //VIDEO
+          case '3g2':
+          case '3gp':
+          case 'asf':
+          case 'asx':
+          case 'avi':
+          case 'flv':
+          case 'mov':
+          case 'mp4':
+          case 'mpg':
+          case 'rm':
+          case 'swf':
+          case 'vob':
+          case 'wmv':
+          var dest = path.join(source,'Organized','Video',element);
+          fse.ensureDirSync(path.join(source,'Organized','Video'), function (err) {
+            if (err) console.log(err)
+              });
+              fse.move(origin, dest, function (err) {
+                if (err) alert(err)
+                alert('moving '+element+":success!");
+              });
+            break;
 
+            //SPREADSHEET FILES
+            case 'xlr':
+            case 'xls':
+            case 'xlsx':
+
+            var dest = path.join(source,'Organized','Documents','Spreadsheet Files',element);
+            fse.ensureDirSync(path.join(source,'Organized','Documents','Spreadsheet Files'), function (err) {
+              if (err) console.log(err)
+            });
+            fse.move(origin, dest, function (err) {
+            if (err) alert(err)
+            alert('moving '+element+":success!");
+            });
+              break;
+
+              //DATABASE FILES
+              case 'accdb':
+              case 'db':
+              case 'dbf':
+              case 'mdb':
+              case 'pdb':
+              case 'sql':
+
+              var dest = path.join(source,'Organized','Documents','Database FIles',element);
+              fse.ensureDirSync(path.join(source,'Organized','Documents','Database Files'), function (err) {
+                if (err) console.log(err)
+              });
+              fse.move(origin, dest, function (err) {
+              if (err) alert(err)
+              alert('moving '+element+":success!");
+              });
+                break;
+
+                //EXECUTABLES
+                case 'apk':
+                case 'app':
+                case 'bat':
+                case 'cgi':
+                case 'com':
+                case 'exe':
+                case 'gadget':
+                case 'jar':
+                case 'pif':
+                case 'vb':
+                case 'wsf':
+
+
+                var dest = path.join(source,'Organized','Executables',element);
+                fse.ensureDirSync(path.join(source,'Organized','Executables'), function (err) {
+                  if (err) console.log(err)
+                });
+                fse.move(origin, dest, function (err) {
+                if (err) alert(err)
+                alert('moving '+element+":success!");
+                });
+                  break;
+
+                  //CAD FILES
+                  case 'dwg':
+                  case 'dxf':
+                  var dest = path.join(source,'Organized','Documents','CAD Files',element);
+                  fse.ensureDirSync(path.join(source,'Organized','Documents','CAD Files'), function (err) {
+                    if (err) console.log(err)
+                  });
+                  fse.move(origin, dest, function (err) {
+                  if (err) alert(err)
+                  alert('moving '+element+":success!");
+                  });
+                    break;
+
+                    //GIS FILES
+                    case 'gpx':
+                    case 'kml':
+                    case 'kmz':
+
+                    var dest = path.join(source,'Organized','Documents','GIS Files',element);
+                    fse.ensureDirSync(path.join(source,'Organized','Documents','GIS Files'), function (err) {
+                      if (err) console.log(err)
+                  });
+                  fse.move(origin, dest, function (err) {
+                    if (err) alert(err)
+                    alert('moving '+element+":success!");
+                  });
+                      break;
+
+                      // WEB FILES
+                      case 'asp':
+                      case 'aspx':
+                      case 'cer':
+                      case 'cfm':
+                      case 'csr':
+                      case 'css':
+                      case 'htm':
+                      case 'html':
+                      case 'js':
+                      case 'jsp':
+                      case 'php':
+                      case 'rss':
+                      case 'xhtml':
+
+                      var dest = path.join(source,'Organized','Documents','Web Files',element);
+                      fse.ensureDirSync(path.join(source,'Organized','Documents','Web Files'), function (err) {
+                        if (err) console.log(err)
+                      });
+                      fse.move(origin, dest, function (err) {
+                      if (err) alert(err)
+                      alert('moving '+element+":success!");
+                      });
+                        break;
+
+                        //PLUGIN FILES
+                        case 'crx':
+                        case 'plugin':
+
+                        var dest = path.join(source,'Organized','Plugin Files',element);
+                        fse.ensureDirSync(path.join(source,'Organized','Plugin Files'), function (err) {
+                          if (err) console.log(err)
+                        });
+                        fse.move(origin, dest, function (err) {
+                        if (err) alert(err)
+                        alert('moving '+element+":success!");
+                        });
+                          break;
+
+                          //FONT FILES
+                          case 'fnt':
+                          case 'fon':
+                          case 'otf':
+                          case 'ttf':
+
+                          var dest = path.join(source,'Organized','Documents','Font Files',element);
+                          fse.ensureDirSync(path.join(source,'Organized','Documents','Font Files'), function (err) {
+                            if (err) console.log(err)
+                        });
+                        fse.move(origin, dest, function (err) {
+                          if (err) alert(err)
+                          alert('moving '+element+":success!");
+                        });
+                            break;
+
+                            //SYSTEM FILES
+                            case 'cab':
+                            case 'cpl':
+                            case 'cur':
+                            case 'deskthemepack':
+                            case 'dll':
+                            case 'dmp':
+                            case 'drv':
+                            case 'icns':
+                            case 'ico':
+                            case 'lnk':
+                            case 'sys':
+
+                            var dest = path.join(source,'Organized','System Files',element);
+                            fse.ensureDirSync(path.join(source,'Organized','System Files'), function (err) {
+                              if (err) console.log(err)
+                            });
+                            fse.move(origin, dest, function (err) {
+                            if (err) alert(err)
+                            alert('moving '+element+":success!");
+                            });
+                              break;
+
+                              //SETTINGS FILES
+                              case 'cfg':
+                              case 'ini':
+                              case 'prf':
+
+                              var dest = path.join(source,'Organized','Settings Files',element);
+                              fse.ensureDirSync(path.join(source,'Organized','Settings Files'), function (err) {
+                                if (err) console.log(err)
+                              });
+                              fse.move(origin, dest, function (err) {
+                              if (err) alert(err)
+                              alert('moving '+element+":success!");
+                              });
+                                break;
+
+                                //Compressed FILES
+                                case '7z':
+                                case 'cbr':
+                                case 'deb':
+                                case 'gz':
+                                case 'pkg':
+                                case 'rar':
+                                case 'rpm':
+                                case 'sitx':
+                                case 'gz':
+                                case 'zip':
+                                case 'zipx':
+
+                                var dest = path.join(source,'Organized','Compressed Files',element);
+                                fse.ensureDirSync(path.join(source,'Organized','Compressed Files'), function (err) {
+                                  if (err) console.log(err)
+                                });
+                                fse.move(origin, dest, function (err) {
+                                if (err) alert(err)
+                                alert('moving '+element+":success!");
+                                });
+                                  break;
+
+                                  //DISK Image FILES
+                                  case 'bin':
+                                  case 'cue':
+                                  case 'dmg':
+                                  case 'iso':
+                                  case 'mdf':
+                                  case 'toast':
+                                  case 'vcd':
+
+                                  var dest = path.join(source,'Organized','Disk Image Files',element);
+                                  fse.ensureDirSync(path.join(source,'Organized','Disk Image Files'), function (err) {
+                                    if (err) console.log(err)
+                                });
+                                fse.move(origin, dest, function (err) {
+                                  if (err) alert(err)
+                                  alert('moving '+element+":success!");
+                                });
+                                    break;
+
+                                    //Developer FILES
+                                    case 'c':
+                                    case 'class':
+                                    case 'cpp':
+                                    case 'cs':
+                                    case 'dtd':
+                                    case 'fla':
+                                    case 'h':
+                                    case 'java':
+                                    case 'lua':
+                                    case 'm':
+                                    case 'pl':
+                                    case 'py':
+                                    case 'sh':
+                                    case 'sln':
+                                    case 'swift':
+                                    case 'vcxproj':
+                                    case 'xcodeproj':
+
+                                    var dest = path.join(source,'Organized','Documents','Developer Files',element);
+                                    fse.ensureDirSync(path.join(source,'Organized','Documents','Developer Files'), function (err) {
+                                      if (err) console.log(err)
+                                    });
+                                    fse.move(origin, dest, function (err) {
+                                    if (err) alert(err)
+                                    alert('moving '+element+":success!");
+                                    });
+                                      break;
+
+                                      //BACKUP FILES
+                                      case 'bak':
+                                      case 'tmp':
+
+                                      var dest = path.join(source,'Organized','Backup Files',element);
+                                      fse.ensureDirSync(path.join(source,'Organized','Backup Files'), function (err) {
+                                        if (err) console.log(err)
+                                    });
+                                    fse.move(origin, dest, function (err) {
+                                      if (err) alert(err)
+                                      alert('moving '+element+":success!");
+                                    });
+                                    break;
+
+                                    //MISC FILES
+                                    case 'crdownload':
+                                    case 'ics':
+                                    case 'msi':
+                                    case 'part':
+                                    case 'torrent':
+
+                                    var dest = path.join(source,'Organized','Misc Files',element);
+                                    fse.ensureDirSync(path.join(source,'Organized','Misc Files'), function (err) {
+                                      if (err) console.log(err)
+                                  });
+                                  fse.move(origin, dest, function (err) {
+                                    if (err) alert(err)
+                                    alert('moving '+element+":success!");
+                                  });
+                                      break;
     default:
       alert('moving '+element+':unsuccesfull');
   }
