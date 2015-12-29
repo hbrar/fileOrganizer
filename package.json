@@ -4,8 +4,8 @@
 	"window":
 	{
 		"toolbar":false,
-		"width":1000,
-		"height":600,
+		"width":600,
+		"height":400,
 		"position":"center"
 	},
 	"maintainers":

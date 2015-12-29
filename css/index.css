@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+}
+#selectButton,
+#organizeButton {
+    border: none;
+    border-top: 2px solid white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width:200px;
+    background-color: steelblue;
+    color:white;
+    font-family: sans-serif;
+    
+}
