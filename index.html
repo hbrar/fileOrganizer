@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang='en'>
-<head>
-  <meta charset='UTF-8'>
-    <link href='css/index.css' rel='stylesheet' type='text/css'>
-    <script src='vendor/jquery-1.11.3.min.js' type='text/javascript'></script>
-    <script src='js/index.js' type='text/javascript'></script>
-</head>
-<body>
-<p><h1>File Organizer</h1></p>
-<input type="file" nwdirectory id='fileBrowser' hidden>
-<div>
-    <button id='selectButton'>Choose folder</button>
-</div>
-<div>
-    <button id='organizeButton'>Organize</button>
-</div>
-<!--unhide Textbox for checking path value-->
-<input type="textbox" id='path' hidden>
-</body>
+	<head>
+	  <meta charset='UTF-8'>
+		<link href='css/index.css' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="vendor/jquery-ui-1.11.4/jquery-ui.theme.min.css">
+		<link href="vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel=
+		"stylesheet" type='text/css'>
+		<script src='vendor/jquery-2.1.4.min.js' type='text/javascript'></script>
+		<script src="vendor/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+		<script src='vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js' type=
+		'text/javascript'></script>
+		<script src='js/index.js' type='text/javascript'></script>
+	</head>
+	<body>
+		<!--for some reason only hidden didn't work after addition of boot links above here with this input only-->
+		<!--returns the path of directory-->
+		<input type="file" nwdirectory id='fileBrowser' class="hidden">
+		<input type="file" nwdirectory id='chooseDest' class="hidden">
+		<p>
+			<h1>File Organizer</h1>
+		</p>
+		<div>
+			<button id='selectButton'>Choose Folder</button>
+		</div>
+		<div>
+			<button id='destButton'>Choose Destination</button>
+		</div>
+		<div>
+			<button id="controlButton" >Organize</button>
+		</div>
+	</body>
 </html>

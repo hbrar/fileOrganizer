@@ -3,16 +3,18 @@
 	"name":"myApp",
 	"window":
 	{
+		"title": "FileOrganizer",
 		"toolbar":false,
 		"width":600,
 		"height":400,
+		"icon": "icon.png",
 		"position":"center"
 	},
 	"maintainers":
 	[
 		{
 			"name":"harman",
-			"email":"hrmnbrar009@gmail.com",
+			"email":"brarharman009@gmail.com",
 			"web":"/"
 		}
 	]
